@@ -56,8 +56,7 @@ struct ClockView: View {
 				.padding(.bottom, 40)
 				.padding(.trailing, 30) // Push left so the * is deemphasized
 			
-			// Display the formatted time string, and set up timer publications
-			// to trigger time incrementing.
+			// Display the formatted time string.
 			Text(userData.hubTime.timeString)
 				.foregroundColor(.white)
 				.font(Font.custom("Digital-7Mono", size: 80))
