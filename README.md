@@ -1,0 +1,21 @@
+#  Hub Clock
+
+## Purpose
+
+The Hub Clock app is used to track the passage of time in the homebrew RPG fantasy universe of **Elushae**, on the world named **Hub**. Hub time has a custom set of units, and time passes at a different rate than real-world seconds, minutes, hours, etc. The app is designed to help a player keep track of how much in-game time has passed during a session, and to document their knowledge (or ignorance!) of the current date. 
+
+Please see the comments at the top of [HubTime.swift](HubClock/Models/HubTime.swift) for a description of Hub timekeeping units and their relationships to each other and to the passage of real-world time.
+
+## Context
+
+In the fantasy universe of Elushae, and in the set of conquered and connected worlds known as the **Circuit**, exists a world called Hub. Hub is positioned in almost all ways as the center of the Circuit -- it has the most known connection points to other worlds, is the center of the top-level economy, and has a number of arcane attributes and mysterious features that make it by far the best environment to foster the interaction of life forms of all kinds. The world itself and all of its infrastructure seem to have sprung into existence fully-formed and ready for habitation, including an environmental spoken-word translation effect and a network of magical translocation booths that can take you anywhere on the infinite industrial plane, provided you know the address or ID of your destination. Anywhere you go on Hub, you will find a continuous system of streets and buildings formed from a nigh-impenetrable blue-and-purple crystalline material. Populated areas teem with a dazzling and exotic variety of people: demons with briefcases and business suits on their way to a meeting, floofies chatting excitedly about their upcoming makeovers, gumdrops and gas-beings calling like carnival barkers to advertise events and draw people in to their shops, yeti talent scouts on the look-out for a fresh face, and snakes in trenchcoats prowling for a good mark to dupe. Everyone is here and ready to do commerce, because, after all, isn't that what life's for? It can be a disorienting experience for a newbie, especially one that arrived unexpectedly by way of a time storm that swept them from their home world and deposited them violently in the middle of a crowded Hub street. But life, and more importantly, business must go on, even if you don't know where...or when...you are.
+
+The above is an example RPG game context for using the Hub Clock app. When a player character is on Hub, they can feel stuck in an "eternal present." There is no culture to speak of, as the populace is a constant flux of people from all around the Circuit. There is very little in the way of geography or landmarks; most streets look roughly the same. There isn't even a sun to mark the passage of time during the day. Just the constant crush of, or notable and ominous absence of, people on the street. The player character will most likely not know the current absolute date, as most Hubbies don't talk about it and most publications do not use it -- the better to focus on the future, and economic growth! And the better to obscure the mysteries of the past. However, one's ability to participate in commerce is highly dependent on time of day, as everything runs on a schedule. 
+
+Thus, a player can use the Hub Clock to record their character's knowledge of the approximate date and to track the passage of time in-game. When their knowledge of the current date acquires more precision, they can pause the clock and update the date field to add more digits, and increase the precision of digits shown on the clock face. If time shenanigans happen to them (time travel, stasis fields, speed spells, or any other abnormal effects enacted or imposed on them by the Game Master), they can pause the clock and adjust the time as appropriate.
+
+## Visuals
+
+The app icon is a visualization of what a Hub analog clock might look like, though it doesn't represent the UI of the app itself, which is in digital form.
+
+The background image on the app's main screen is representative of the native Hub crystal that forms the world's streets and buildings.
