@@ -26,7 +26,7 @@ struct IntegerField: View {
 	@State private var userInput: String = ""
 	
 	// Inherited/captured/injected
-    @Environment(\.colorScheme) var colorScheme
+	@Environment(\.colorScheme) var colorScheme
 	
 	init(label: String, value: Binding<Int>, max: Int, isValid: Binding<Bool>) {
 		self.label = label
@@ -56,7 +56,7 @@ struct IntegerField: View {
 		}
 	}
 	
-    var body: some View {
+	var body: some View {
 		TextField(
 			label,
 			text: Binding(
@@ -79,16 +79,16 @@ struct IntegerField: View {
 				// updated later when the user changes the input value.
 				self.updateState(String(self.value))
 			}
-    }
+	}
 }
 
 struct NumberField_Previews: PreviewProvider {
-    static var previews: some View {
+	static var previews: some View {
 		IntegerField(
 			label: "Number",
 			value: .constant(0),
 			max: 100,
 			isValid: .constant(true)
 		)
-    }
+	}
 }

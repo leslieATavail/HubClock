@@ -13,7 +13,7 @@ struct IntegerSliderView: View {
 	var min: Int
 	var max: Int
 	
-    var body: some View {
+	var body: some View {
 		VStack {
 			Slider(
 				value: Binding(
@@ -28,15 +28,15 @@ struct IntegerSliderView: View {
 				step: 1.0
 			)
 		}
-    }
+	}
 }
 
 struct IntegerSliderView_Previews: PreviewProvider {
-    static var previews: some View {
+	static var previews: some View {
 		IntegerSliderView(
 			value: .constant(3),
 			min: 1,
 			max: 5
 		)
-    }
+	}
 }

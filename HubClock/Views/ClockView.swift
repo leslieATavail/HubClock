@@ -124,8 +124,8 @@ struct ClockView: View {
 }
 
 struct ClockView_Previews: PreviewProvider {
-    static var previews: some View {
-        ClockView()
+	static var previews: some View {
+		ClockView()
 			.environmentObject(UserData())
-    }
+	}
 }

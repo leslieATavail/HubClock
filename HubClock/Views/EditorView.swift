@@ -29,7 +29,7 @@ struct EditorView: View {
 		cycleIsValid && sliceIsValid && tickIsValid && tickuleIsValid
 	}
 	
-    var body: some View {
+	var body: some View {
 		VStack {
 			HStack {
 				Button("Cancel") {
@@ -96,15 +96,15 @@ struct EditorView: View {
 			Spacer()
 		}
 			.padding()
-    }
+	}
 }
 
 struct EditorView_Previews: PreviewProvider {
-    static var previews: some View {
+	static var previews: some View {
 		EditorView(
 			draftHubTime: .constant(HubTime()),
 			isEditing: .constant(true)
 		)
 			.environmentObject(UserData())
-    }
+	}
 }

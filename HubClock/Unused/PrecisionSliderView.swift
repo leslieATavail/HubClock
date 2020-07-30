@@ -12,7 +12,7 @@ import SwiftUI
 struct PrecisionSliderView: View {
 	@Binding var hubTime: HubTime
 	
-    var body: some View {
+	var body: some View {
 		VStack {
 			HStack {
 				Text("Precision:").bold()
@@ -24,13 +24,13 @@ struct PrecisionSliderView: View {
 				max: HubTime.maxPrecision
 			)
 		}
-    }
+	}
 }
 
 struct PrecisionSliderView_Previews: PreviewProvider {
-    static var previews: some View {
+	static var previews: some View {
 		return PrecisionSliderView(
 			hubTime: .constant(HubTime())
 		)
-    }
+	}
 }
