@@ -65,7 +65,7 @@ struct EditorView: View {
 			Stepper(
 				"Precision: \(draftHubTime.precision)",
 				value: $draftHubTime.precision,
-				in: 1...7
+				in: HubTime.minPrecision...HubTime.maxPrecision
 			)
 				.padding(.bottom, 50)
 			
