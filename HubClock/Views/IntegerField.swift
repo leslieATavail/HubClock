@@ -7,6 +7,16 @@
 //
 
 import SwiftUI
+import Introspect
+
+/// Custom class for allowing select-all of the text field contents on
+/// editingDidBegin. From https://stackoverflow.com/a/59888336
+private class TextFieldObserver: NSObject {
+	@objc
+	func editing(_ textField: UITextField) {
+		textField.selectAll(nil)
+	}
+}
 
 /// Customized field view for integers that validates the current value is
 /// composed only of digit characters and represents an integer value less than
@@ -24,6 +34,7 @@ struct IntegerField: View {
 	
 	// Pre-initialized local state
 	@State private var userInput: String = ""
+	private let observer = TextFieldObserver()
 	
 	// Inherited/captured/injected
 	@Environment(\.colorScheme) var colorScheme
@@ -68,6 +79,14 @@ struct IntegerField: View {
 				}
 			)
 		)
+			// Add the "on edit, select all" action to the field.
+			.introspectTextField { field in
+				field.addTarget(
+					self.observer,
+					action: #selector(TextFieldObserver.editing),
+					for: .editingDidBegin
+				)
+			}
 			.keyboardType(.numberPad)
 			.textFieldStyle(RoundedBorderTextFieldStyle())
 			.foregroundColor(!self.isValid ? .red :

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		632C0F0DC60137D700D2911A /* Pods_HubClock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872701492753B16427007DDC /* Pods_HubClock.framework */; };
 		CE35A4EC24D13452007EE509 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE35A4EB24D13452007EE509 /* ClockView.swift */; };
 		CE35A4F124D13A97007EE509 /* IntegerSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE35A4F024D13A97007EE509 /* IntegerSliderView.swift */; };
 		CE35A4F324D13A9D007EE509 /* PrecisionSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE35A4F224D13A9D007EE509 /* PrecisionSliderView.swift */; };
@@ -25,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		56B8810386B3974210199AC5 /* Pods-HubClock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HubClock.release.xcconfig"; path = "Target Support Files/Pods-HubClock/Pods-HubClock.release.xcconfig"; sourceTree = "<group>"; };
+		5F2ACA31A4AC1B483CABAE4E /* Pods-HubClock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HubClock.debug.xcconfig"; path = "Target Support Files/Pods-HubClock/Pods-HubClock.debug.xcconfig"; sourceTree = "<group>"; };
+		872701492753B16427007DDC /* Pods_HubClock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HubClock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE35A4EB24D13452007EE509 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		CE35A4F024D13A97007EE509 /* IntegerSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegerSliderView.swift; sourceTree = "<group>"; };
 		CE35A4F224D13A9D007EE509 /* PrecisionSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrecisionSliderView.swift; sourceTree = "<group>"; };
@@ -49,12 +53,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				632C0F0DC60137D700D2911A /* Pods_HubClock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9753E6BECD32F90EBEE71DEC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5F2ACA31A4AC1B483CABAE4E /* Pods-HubClock.debug.xcconfig */,
+				56B8810386B3974210199AC5 /* Pods-HubClock.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A083194ACB49A91B6DE298EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				872701492753B16427007DDC /* Pods_HubClock.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CE35A4ED24D137A9007EE509 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +113,8 @@
 			children = (
 				CED0E78024CE5ED500039D59 /* HubClock */,
 				CED0E77F24CE5ED500039D59 /* Products */,
+				9753E6BECD32F90EBEE71DEC /* Pods */,
+				A083194ACB49A91B6DE298EE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,9 +166,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CED0E79224CE5ED600039D59 /* Build configuration list for PBXNativeTarget "HubClock" */;
 			buildPhases = (
+				5CCCB4BEC6C3FE5865AD00C2 /* [CP] Check Pods Manifest.lock */,
 				CED0E77A24CE5ED500039D59 /* Sources */,
 				CED0E77B24CE5ED500039D59 /* Frameworks */,
 				CED0E77C24CE5ED500039D59 /* Resources */,
+				3511C63035C30385FC57B922 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -200,6 +227,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3511C63035C30385FC57B922 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HubClock/Pods-HubClock-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HubClock/Pods-HubClock-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HubClock/Pods-HubClock-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5CCCB4BEC6C3FE5865AD00C2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HubClock-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CED0E77A24CE5ED500039D59 /* Sources */ = {
@@ -350,6 +419,7 @@
 		};
 		CED0E79324CE5ED600039D59 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F2ACA31A4AC1B483CABAE4E /* Pods-HubClock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -370,6 +440,7 @@
 		};
 		CED0E79424CE5ED600039D59 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56B8810386B3974210199AC5 /* Pods-HubClock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
