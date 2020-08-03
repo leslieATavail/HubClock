@@ -49,7 +49,7 @@ struct EditorView: View {
 			
 			HStack {
 				Text("*")
-				IntegerField(
+				NonnegativeIntegerField(
 					label: "Cycle",
 					value: $draftHubTime.cycle,
 					max: Int.max,
@@ -65,26 +65,26 @@ struct EditorView: View {
 			Stepper(
 				"Precision: \(draftHubTime.precision)",
 				value: $draftHubTime.precision,
-				in: HubTime.minPrecision...HubTime.maxPrecision
+				in: HubTime.precisionRange
 			)
 				.padding(.bottom, 50)
 			
 			HStack {
-				IntegerField(
+				NonnegativeIntegerField(
 					label: "Slice",
 					value: $draftHubTime.slice,
 					max: HubTime.slicesPerCycle - 1,
 					isValid: $sliceIsValid
 				)
 				Text("′")
-				IntegerField(
+				NonnegativeIntegerField(
 					label: "Tick",
 					value: $draftHubTime.tick,
 					max: HubTime.ticksPerSlice - 1,
 					isValid: $tickIsValid
 				)
 				Text("″")
-				IntegerField(
+				NonnegativeIntegerField(
 					label: "Tickule",
 					value: $draftHubTime.tickule,
 					max: HubTime.tickulesPerTick - 1,

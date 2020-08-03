@@ -20,8 +20,7 @@ struct PrecisionSliderView: View {
 			}
 			IntegerSliderView(
 				value: $hubTime.precision,
-				min: HubTime.minPrecision,
-				max: HubTime.maxPrecision
+				range: HubTime.precisionRange
 			)
 		}
 	}
@@ -29,8 +28,6 @@ struct PrecisionSliderView: View {
 
 struct PrecisionSliderView_Previews: PreviewProvider {
 	static var previews: some View {
-		return PrecisionSliderView(
-			hubTime: .constant(HubTime())
-		)
+		return PrecisionSliderView(hubTime: .constant(HubTime()))
 	}
 }

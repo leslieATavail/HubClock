@@ -33,8 +33,7 @@ struct HubTime {
 	// therefore allowed to show on the running clock. The user may change this
 	// value, within the provided [min..max] range.
 	var precision: Int = 3
-	static let minPrecision = 1
-	static let maxPrecision = 7 // Can be bumped up here as long as text fits
+	static let precisionRange = 1...7 // Max can be bumped up here as long as text fits
 	
 	// Data and reference fields for the current time.
 	private var currentTickule: Int = 0
@@ -67,24 +66,29 @@ struct HubTime {
 		}
 	}
 	
+	/// Get the value in 0...max nearest to the supplied integer value. This
+	/// operation is applied to incoming values intended to be assigned to one
+	/// of our time units. This means callers cannot do funny time calculations
+	/// by setting excessively large or negative values.
+	private func clamp(_ value: Int, _ max: Int) -> Int {
+		return value < 0 ? 0 : (value > max ? max : value)
+	}
+	
 	/// A tuple of Hub time components (slice, ticks, tickules).
-	var timeComponents: (Int, Int, Int) {
+	var timeComponents: (slice: Int, tick: Int, tickule: Int) {
 		get {
 			// Calculate the values of the various time components, since we
 			// do not store the time in those terms.
-			let slice = currentTickule / Self.tickulesPerSlice
-			let tick = (currentTickule / Self.tickulesPerTick)
-				% Self.ticksPerSlice
-			let tickule = currentTickule % Self.tickulesPerTick
+			let (ticks, tickule) = currentTickule /% Self.tickulesPerTick
+			let (slice, tick) = ticks /% Self.ticksPerSlice
 			return (slice, tick, tickule)
 		}
 		set(components) {
-			let (slice, tick, tickule) = components
+			var (slice, tick, tickule) = components
 			
-			// Ensure data is well-formed; this should be enforced by inputs.
-			assert(0 <= slice && slice < Self.slicesPerCycle)
-			assert(0 <= tick && tick < Self.ticksPerSlice)
-			assert(0 <= tickule && tickule < Self.tickulesPerTick)
+			slice = self.clamp(slice, Self.slicesPerCycle - 1)
+			tick = self.clamp(tick, Self.ticksPerSlice - 1)
+			tickule = self.clamp(tickule, Self.tickulesPerTick - 1)
 			
 			// Use the input to set the integer representations.
 			currentTickule =
@@ -108,45 +112,42 @@ struct HubTime {
 	/// The current slice.
 	var slice: Int {
 		get {
-			let (slice, _, _) = timeComponents
-			return slice
+			timeComponents.slice
 		}
 		set(newSlice) {
-			// Ensure data is well-formed; this should be enforced elsewhere.
-			assert(newSlice >= 0)
-			
-			let (_, tick, tickule) = timeComponents
-			timeComponents = (newSlice, tick, tickule)
+			timeComponents = (
+				clamp(newSlice, Self.slicesPerCycle - 1),
+				timeComponents.tick,
+				timeComponents.tickule
+			)
 		}
 	}
 
 	/// The current tick.
 	var tick: Int {
 		get {
-			let (_, tick, _) = timeComponents
-			return tick
+			timeComponents.tick
 		}
 		set(newTick) {
-			// Ensure data is well-formed; this should be enforced elsewhere.
-			assert(newTick >= 0)
-			
-			let (slice, _, tickule) = timeComponents
-			timeComponents = (slice, newTick, tickule)
+			timeComponents = (
+				timeComponents.slice,
+				clamp(newTick, Self.ticksPerSlice - 1),
+				timeComponents.tickule
+			)
 		}
 	}
 
 	/// The current tickule.
 	var tickule: Int {
 		get {
-			let (_, _, tickule) = timeComponents
-			return tickule
+			timeComponents.tickule
 		}
 		set(newTickule) {
-			// Ensure data is well-formed; this should be enforced elsewhere.
-			assert(newTickule >= 0)
-			
-			let (slice, tick, _) = timeComponents
-			timeComponents = (slice, tick, newTickule)
+			timeComponents = (
+				timeComponents.slice,
+				timeComponents.tick,
+				clamp(newTickule, Self.tickulesPerTick - 1)
+			)
 		}
 	}
 
@@ -159,18 +160,16 @@ struct HubTime {
 			currentTickule
 		}
 		set(tickules) {
-			// Ensure data is well-formed; this should be enforced elsewhere.
-			assert(tickules >= 0)
-			if tickules >= Self.tickulesPerCycle {
-				// When a supplied tickule count is above the maximum value per
-				// cycle, truncate the excess and use it to update the cycle
-				// number. This only works this way because the clock only runs
-				// forward.
-				currentTickule = tickules % Self.tickulesPerCycle
-				cycle += tickules / Self.tickulesPerCycle
+			if tickules < 0 {
+				currentTickule = 0
 			}
 			else {
-				currentTickule = tickules
+				// If the supplied tickule count is above the maximum value per
+				// cycle, use the excess to determine how many extra cycles have
+				// advanced. This only works this way because the clock only
+				// runs forward.
+				currentTickule = tickules % Self.tickulesPerCycle
+				cycle += tickules / Self.tickulesPerCycle
 			}
 		}
 	}

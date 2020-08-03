@@ -9,15 +9,6 @@
 import SwiftUI
 import Introspect
 
-/// Custom class for allowing select-all of the text field contents on
-/// editingDidBegin. From https://stackoverflow.com/a/59888336
-private class TextFieldObserver: NSObject {
-	@objc
-	func editing(_ textField: UITextField) {
-		textField.selectAll(nil)
-	}
-}
-
 /// Customized field view for integers that validates the current value is
 /// composed only of digit characters and represents an integer value less than
 /// or equal to the supplied maximum. When the value is invalid, text is
@@ -25,7 +16,7 @@ private class TextFieldObserver: NSObject {
 /// current color scheme. The parent view must pass in a binding in which the
 /// validity of the field's current value will be stored; this allows the parent
 /// to calculate their total validity without actively interrogating children.
-struct IntegerField: View {
+struct NonnegativeIntegerField: View {
 	// Required parameters
 	let label: String
 	@Binding var value: Int
@@ -34,10 +25,25 @@ struct IntegerField: View {
 	
 	// Pre-initialized local state
 	@State private var userInput: String = ""
-	private let observer = TextFieldObserver()
 	
 	// Inherited/captured/injected
 	@Environment(\.colorScheme) var colorScheme
+	
+	// Custom stuff for automatic select-all of text field contents when the
+	// field gets focus. Adapted from https://stackoverflow.com/a/59888336
+	private class TextFieldObserver: NSObject {
+		@objc
+		func selectAll(_ field: UITextField) {
+			field.selectAll(nil)
+		}
+	}
+	private func addSelectAll(_ field: UITextField) {
+		field.addTarget(
+			TextFieldObserver(),
+			action: #selector(TextFieldObserver.selectAll),
+			for: .editingDidBegin
+		)
+	}
 	
 	init(label: String, value: Binding<Int>, max: Int, isValid: Binding<Bool>) {
 		self.label = label
@@ -54,15 +60,14 @@ struct IntegerField: View {
 		if text == "" {
 			self.value = 0
 			self.isValid = true
-		} else if text.allSatisfy({ "0123456789".contains($0) }),
-			let intValue = Int(text),
-			intValue <= self.max
+		}
+		else if let intValue = Int(text), 0...self.max ~= intValue
 		{
 			self.value = intValue
 			self.isValid = true
-		} else {
-			// View is initialized from a nonempty Int binding, so since
-			// self.value is never unset, it always has an Int.
+		}
+		else {
+			// Do not adjust the last-known-valid value.
 			self.isValid = false
 		}
 	}
@@ -80,13 +85,7 @@ struct IntegerField: View {
 			)
 		)
 			// Add the "on edit, select all" action to the field.
-			.introspectTextField { field in
-				field.addTarget(
-					self.observer,
-					action: #selector(TextFieldObserver.editing),
-					for: .editingDidBegin
-				)
-			}
+			.introspectTextField { field in self.addSelectAll(field) }
 			.keyboardType(.numberPad)
 			.textFieldStyle(RoundedBorderTextFieldStyle())
 			.foregroundColor(!self.isValid ? .red :
@@ -103,7 +102,7 @@ struct IntegerField: View {
 
 struct NumberField_Previews: PreviewProvider {
 	static var previews: some View {
-		IntegerField(
+		NonnegativeIntegerField(
 			label: "Number",
 			value: .constant(0),
 			max: 100,

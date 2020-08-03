@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,8 +11,9 @@
 		CE35A4EC24D13452007EE509 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE35A4EB24D13452007EE509 /* ClockView.swift */; };
 		CE35A4F124D13A97007EE509 /* IntegerSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE35A4F024D13A97007EE509 /* IntegerSliderView.swift */; };
 		CE35A4F324D13A9D007EE509 /* PrecisionSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE35A4F224D13A9D007EE509 /* PrecisionSliderView.swift */; };
-		CE624B8A24D0C2F6002AD3ED /* IntegerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE624B8924D0C2F6002AD3ED /* IntegerField.swift */; };
+		CE624B8A24D0C2F6002AD3ED /* NonnegativeIntegerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE624B8924D0C2F6002AD3ED /* NonnegativeIntegerField.swift */; };
 		CE624B8E24D129C3002AD3ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE624B8D24D129C3002AD3ED /* ContentView.swift */; };
+		CEB3F67C24D73F4900EC07AE /* QuotientAndRemainder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3F67B24D73F4900EC07AE /* QuotientAndRemainder.swift */; };
 		CED0E78224CE5ED500039D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED0E78124CE5ED500039D59 /* AppDelegate.swift */; };
 		CED0E78424CE5ED500039D59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED0E78324CE5ED500039D59 /* SceneDelegate.swift */; };
 		CED0E78824CE5ED600039D59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED0E78724CE5ED600039D59 /* Assets.xcassets */; };
@@ -32,8 +33,9 @@
 		CE35A4EB24D13452007EE509 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		CE35A4F024D13A97007EE509 /* IntegerSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegerSliderView.swift; sourceTree = "<group>"; };
 		CE35A4F224D13A9D007EE509 /* PrecisionSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrecisionSliderView.swift; sourceTree = "<group>"; };
-		CE624B8924D0C2F6002AD3ED /* IntegerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegerField.swift; sourceTree = "<group>"; };
+		CE624B8924D0C2F6002AD3ED /* NonnegativeIntegerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonnegativeIntegerField.swift; sourceTree = "<group>"; };
 		CE624B8D24D129C3002AD3ED /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CEB3F67B24D73F4900EC07AE /* QuotientAndRemainder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotientAndRemainder.swift; sourceTree = "<group>"; };
 		CED0E77E24CE5ED500039D59 /* HubClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HubClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED0E78124CE5ED500039D59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CED0E78324CE5ED500039D59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,7 +68,6 @@
 				5F2ACA31A4AC1B483CABAE4E /* Pods-HubClock.debug.xcconfig */,
 				56B8810386B3974210199AC5 /* Pods-HubClock.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -84,7 +85,7 @@
 				CE624B8D24D129C3002AD3ED /* ContentView.swift */,
 				CE35A4EB24D13452007EE509 /* ClockView.swift */,
 				CED0E79E24CE98CC00039D59 /* EditorView.swift */,
-				CE624B8924D0C2F6002AD3ED /* IntegerField.swift */,
+				CE624B8924D0C2F6002AD3ED /* NonnegativeIntegerField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -94,6 +95,7 @@
 			children = (
 				CED0E79524CE623D00039D59 /* UserData.swift */,
 				CED0E79C24CE800700039D59 /* HubTime.swift */,
+				CEB3F67B24D73F4900EC07AE /* QuotientAndRemainder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -277,12 +279,13 @@
 			files = (
 				CED0E79D24CE800700039D59 /* HubTime.swift in Sources */,
 				CE624B8E24D129C3002AD3ED /* ContentView.swift in Sources */,
+				CEB3F67C24D73F4900EC07AE /* QuotientAndRemainder.swift in Sources */,
 				CED0E79F24CE98CC00039D59 /* EditorView.swift in Sources */,
 				CE35A4F124D13A97007EE509 /* IntegerSliderView.swift in Sources */,
 				CED0E78224CE5ED500039D59 /* AppDelegate.swift in Sources */,
 				CED0E78424CE5ED500039D59 /* SceneDelegate.swift in Sources */,
 				CE35A4F324D13A9D007EE509 /* PrecisionSliderView.swift in Sources */,
-				CE624B8A24D0C2F6002AD3ED /* IntegerField.swift in Sources */,
+				CE624B8A24D0C2F6002AD3ED /* NonnegativeIntegerField.swift in Sources */,
 				CED0E79624CE623D00039D59 /* UserData.swift in Sources */,
 				CED0E79B24CE722F00039D59 /* Exponentiative.swift in Sources */,
 				CE35A4EC24D13452007EE509 /* ClockView.swift in Sources */,

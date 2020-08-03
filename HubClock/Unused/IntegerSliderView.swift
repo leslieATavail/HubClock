@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-/// A generic integer-valued slider parameterized by an integer min and max.
+/// A generic integer-valued slider parameterized by an integer range.
 struct IntegerSliderView: View {
 	@Binding var value: Int
-	var min: Int
-	var max: Int
+	var range: ClosedRange<Int>
 	
 	var body: some View {
 		VStack {
@@ -24,7 +23,7 @@ struct IntegerSliderView: View {
 						self.value = Int(newValue)
 					}
 				),
-				in: Double(min)...Double(max),
+				in: Double(range.lowerBound)...Double(range.upperBound),
 				step: 1.0
 			)
 		}
@@ -33,10 +32,6 @@ struct IntegerSliderView: View {
 
 struct IntegerSliderView_Previews: PreviewProvider {
 	static var previews: some View {
-		IntegerSliderView(
-			value: .constant(3),
-			min: 1,
-			max: 5
-		)
+		IntegerSliderView(value: .constant(3), range: 1...5)
 	}
 }
